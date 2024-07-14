@@ -23,6 +23,13 @@
 }
 
 @layer utilities {
+  .divider {
+    @apply my-6 h-[1.2px] w-full bg-gray-600;
+  }
+  .faded-text {
+    @apply text-sm font-bold text-gray-400;
+  }
+
   .gradient {
     @apply bg-gradient-to-r from-teal-600 via-blue-600 to-pink-600;
   }

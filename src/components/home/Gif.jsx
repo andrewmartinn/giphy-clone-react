@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { LuBadgeCheck } from "react-icons/lu";
 
-const Gif = ({ gif, hover = true }) => {
+const Gif = ({ gif, hover = false }) => {
   return (
-    <Link to={`${gif.type}/${gif.slug}`}>
+    <Link to={`/${gif?.type}/${gif?.slug}`}>
       <div className="group relative mb-2 aspect-video w-full cursor-pointer">
         <img
           src={gif?.images?.fixed_width.webp}

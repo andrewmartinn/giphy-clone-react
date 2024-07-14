@@ -30,7 +30,7 @@ const Home = () => {
       {gifs && (
         <div className="columns-2 gap-2 md:columns-3 lg:columns-4 xl:columns-5">
           {gifs.map((gif) => (
-            <Gif key={gif.id} gif={gif} />
+            <Gif key={gif.id} gif={gif} hover={true} />
           ))}
         </div>
       )}

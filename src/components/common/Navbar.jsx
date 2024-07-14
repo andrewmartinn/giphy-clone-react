@@ -93,7 +93,11 @@ const Navbar = () => {
             <div className="mt-4 grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5">
               {categories.map((category) => (
                 <Link
+                  to={`/${category.name_encoded}`}
                   key={category.name}
+                  onClick={() =>
+                    setShowCategoriesDropdown(!showCategoriesDropdown)
+                  }
                   className="font-medium hover:opacity-80"
                 >
                   {category.name}

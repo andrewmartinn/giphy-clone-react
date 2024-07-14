@@ -29,12 +29,11 @@ const Search = () => {
   }, [filter]);
 
   return (
-    <div className="my-4">
+    <section className="my-6">
       <div className="pb-33">
         <span className="pr-4 text-5xl font-extrabold">{query}</span>
-        <span className="text-sm font-medium text-gray-400">
-          {searchResults.length}{" "}
-          {filter.charAt(0).toUpperCase() + filter.slice(1)}
+        <span className="text-sm font-medium capitalize text-gray-400">
+          {searchResults.length} {filter}
         </span>
       </div>
       <GifFilter alignLeft={true} />
@@ -51,7 +50,7 @@ const Search = () => {
           </span>
         </div>
       )}
-    </div>
+    </section>
   );
 };
 export default Search;
