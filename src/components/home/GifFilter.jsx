@@ -19,7 +19,7 @@ const filters = [
   },
 ];
 
-const GifFilter = ({ alignLeft = false, showTrending = true }) => {
+const GifFilter = ({ alignLeft = false, showTrending = false }) => {
   const { filter, setFilter } = useGif();
   return (
     <div

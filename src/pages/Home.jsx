@@ -26,7 +26,7 @@ const Home = () => {
 
   return (
     <section className="min-h-screen overflow-hidden">
-      <GifFilter />
+      <GifFilter showTrending={true} />
       {gifs && (
         <div className="columns-2 gap-2 md:columns-3 lg:columns-4 xl:columns-5">
           {gifs.map((gif) => (
