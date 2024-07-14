@@ -364,6 +364,27 @@
   resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.57.0.tgz#a5417ae8427873f1dd08b70b3574b453e67b5f7f"
   integrity sha512-Ys+3g2TaW7gADOJzPt83SJtCDhMjndcDMFVQ/Tj9iA1BfJzFKD9mAUXT3OenpuPHbI6P/myECxRJrofUsDx/5g==
 
+"@giphy/js-fetch-api@^5.6.0":
+  version "5.6.0"
+  resolved "https://registry.yarnpkg.com/@giphy/js-fetch-api/-/js-fetch-api-5.6.0.tgz#5658c18f67fcb9ad0ddad21acd5ad5392ed3aaf9"
+  integrity sha512-hKZ7XZWGSzR29ISW1f6LWeVZ7GgWwhVuZprPMj3nrhHT6RkmkKghIP/yXKpWyhfTyAVgjeNGq0T/fAmGNKRvGQ==
+  dependencies:
+    "@giphy/js-types" "*"
+    "@giphy/js-util" "*"
+
+"@giphy/js-types@*":
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/@giphy/js-types/-/js-types-5.1.0.tgz#af7c7d3b8190bf89e25da0e693935871b2c53b0b"
+  integrity sha512-BZYCDtYNRR7cUWkbDLB4wmm3qmWMsVCQdUiBNOfmZ3yAazCgygKJoDI/5Rq4CK5MBaOc5LVdF8viC2WtoBdaPA==
+
+"@giphy/js-util@*":
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/@giphy/js-util/-/js-util-5.1.0.tgz#9f289ea8aaa115e7a1a6517cfdc8db47cef35ae8"
+  integrity sha512-CvmeJi9H6tj0jscL7xpRXBhNuTgkQkXo7PQZK+UbWMR3NmJ07JibYxrw02bLmBZHxw+4F0cGeZL3zf8u5d+o5A==
+  dependencies:
+    "@giphy/js-types" "*"
+    uuid "^9.0.0"
+
 "@humanwhocodes/config-array@^0.11.14":
   version "0.11.14"
   resolved "https://registry.yarnpkg.com/@humanwhocodes/config-array/-/config-array-0.11.14.tgz#d78e481a039f7566ecc9660b4ea7fe6b1fec442b"
@@ -2289,6 +2310,11 @@ react-dom@^18.3.1:
     loose-envify "^1.1.0"
     scheduler "^0.23.2"
 
+react-icons@^5.2.1:
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-5.2.1.tgz#28c2040917b2a2eda639b0f797bff1888e018e4a"
+  integrity sha512-zdbW5GstTzXaVKvGSyTaBalt7HSfuK5ovrzlpyiWHAFXndXTdd/1hdDHI4xBM1Mn7YriT6aqESucFl9kEXzrdw==
+
 react-is@^16.13.1:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
@@ -2790,6 +2816,11 @@ util-deprecate@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
   integrity sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==
+
+uuid@^9.0.0:
+  version "9.0.1"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-9.0.1.tgz#e188d4c8853cc722220392c424cd637f32293f30"
+  integrity sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==
 
 vite@^5.3.1:
   version "5.3.3"

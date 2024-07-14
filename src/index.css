@@ -1,3 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.filter-item {
+  position: relative;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.filter-item:hover {
+  transform: translateY(-3px);
+}
+
+.filter-item.bg-gradient-to-r {
+  background-size: 200%;
+  transition: background-position 0.3s ease-in-out;
+}
+
+.filter-item.bg-gradient-to-r:hover {
+  background-position: right center;
+}
+
+@layer utilities {
+  .gradient {
+    @apply bg-gradient-to-r from-teal-600 via-blue-600 to-pink-600;
+  }
+}

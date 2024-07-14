@@ -3,8 +3,9 @@ import RootLayout from "./layout/RootLayout";
 import Home from "./pages/Home";
 import Category from "./pages/Category";
 import Search from "./pages/Search";
-import Gif from "./pages/Gif";
 import Favourites from "./pages/Favourites";
+import GifProvider from "./context/gifContext";
+import GifDetails from "./pages/GifDetails";
 
 const router = createBrowserRouter([
   {
@@ -24,7 +25,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/:type/:slug",
-        element: <Gif />,
+        element: <GifDetails />,
       },
       {
         path: "/favourites",
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
-  return <RouterProvider router={router} />;
+  return (
+    <GifProvider>
+      <RouterProvider router={router} />
+    </GifProvider>
+  );
 };
 export default App;
