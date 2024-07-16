@@ -7,13 +7,13 @@ import { useGif } from "../../hooks/useGif";
 import GifSearch from "./GifSearch";
 
 const Navbar = () => {
+  const { gf, favourites } = useGif();
   const [categories, setCategories] = useState([]);
   const [showCategoriesDropdown, setShowCategoriesDropdown] = useState(false);
-  const { gf } = useGif();
 
   const fetchGifCategories = async () => {
     try {
-      const { data } = await gf.categories();
+      const { data, favourites } = await gf.categories();
       console.log("[categories_navbar]", data);
       setCategories(data);
     } catch (error) {
@@ -70,15 +70,22 @@ const Navbar = () => {
             >
               <HiEllipsisVertical size={30} />
             </button>
-            <Link className="hidden h-9 rounded bg-gray-700 px-6 pt-1.5 lg:block">
-              Favourite GIFs
-            </Link>
+            {favourites.length > 0 && (
+              <Link
+                to="/favourites"
+                className="hidden h-9 rounded bg-gray-700 px-6 pt-1.5 lg:block"
+              >
+                Favourite GIFs
+              </Link>
+            )}
           </div>
         </div>
         <div className="flex gap-4 lg:hidden">
-          <Link to="/favourites" className="rounded bg-gray-700 p-2">
-            <FaRegHeart size={20} />
-          </Link>
+          {favourites.length > 0 && (
+            <Link to="/favourites" className="rounded bg-gray-700 p-2">
+              <FaRegHeart size={20} />
+            </Link>
+          )}
           <button
             onClick={() => setShowCategoriesDropdown(!showCategoriesDropdown)}
             className="rounded bg-gray-700 p-2 text-white"
