@@ -23,11 +23,12 @@ const GifDetails = () => {
   const [relatedGifs, setRelatedGifs] = useState([]);
   const [gifDesc, setGifDesc] = useState(false);
 
-  const gifId = slug.split("-");
+  const slugId = slug.split("-");
+  const gifId = slugId[slugId.length - 1];
 
   const fetchGifDetails = async () => {
     try {
-      const { data } = await gf.gif(gifId[gifId.length - 1]);
+      const { data } = await gf.gif(gifId);
       console.log("gif_page", data);
       setGif(data);
     } catch (error) {
@@ -37,7 +38,7 @@ const GifDetails = () => {
 
   const fetchRelatedGifs = async () => {
     try {
-      const { data } = await gf.related(gifId[gifId.length - 1]);
+      const { data } = await gf.related(gifId);
       console.log("gif_page_related", data);
       setRelatedGifs(data);
     } catch (error) {
@@ -52,7 +53,7 @@ const GifDetails = () => {
 
     fetchGifDetails();
     fetchRelatedGifs();
-  }, []);
+  }, [type, gifId]);
 
   const handleShareGif = () => {};
   const handleEmbedGif = () => {};
@@ -80,10 +81,10 @@ const GifDetails = () => {
               </div>
             </div>
             {gif?.user?.description && (
-              <p className="whitespace-pre-line py-4 text-sm text-gray-400">
+              <div className="whitespace-pre-line py-4 text-sm text-gray-400">
                 {gifDesc
                   ? gif?.user?.description
-                  : gif.user?.description.slice(0, 100) + "..."}
+                  : gif.user?.description.slice(0, 100)}
                 {gif?.user?.description.length > 100 && (
                   <div
                     onClick={() => setGifDesc(!gifDesc)}
@@ -100,7 +101,7 @@ const GifDetails = () => {
                     )}
                   </div>
                 )}
-              </p>
+              </div>
             )}
           </>
         )}
@@ -152,7 +153,7 @@ const GifDetails = () => {
           {/* Favourites/Share/Embed */}
           <div className="mt-6 hidden flex-col gap-5 sm:flex">
             <button
-              // onClick={() => addToFavourites(gif.id)}
+              onClick={() => addToFavourites(gif.id)}
               className="flex items-center gap-4 text-lg font-medium"
             >
               <HiMiniHeart
