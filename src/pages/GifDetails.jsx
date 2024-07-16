@@ -22,9 +22,10 @@ const GifDetails = () => {
   const [gif, setGif] = useState({});
   const [relatedGifs, setRelatedGifs] = useState([]);
   const [gifDesc, setGifDesc] = useState(false);
+  const [shareOverlay, setShareOverlay] = useState(false);
 
-  const slugId = slug.split("-");
-  const gifId = slugId[slugId.length - 1];
+  const gifSlug = slug.split("-");
+  const gifId = gifSlug[gifSlug.length - 1];
 
   const fetchGifDetails = async () => {
     try {
@@ -54,9 +55,6 @@ const GifDetails = () => {
     fetchGifDetails();
     fetchRelatedGifs();
   }, [type, gifId]);
-
-  const handleShareGif = () => {};
-  const handleEmbedGif = () => {};
 
   return (
     <section className="my-10 grid grid-cols-4 gap-4">
@@ -126,7 +124,14 @@ const GifDetails = () => {
           {/* GIF */}
           <div className="w-full sm:w-3/4">
             <div className="faded-text mb-2 truncate">{gif.title}</div>
-            <Gif gif={gif} hover={true} />
+            <div className="relative">
+              <Gif
+                gif={gif}
+                hover={true}
+                share={shareOverlay}
+                setShareOverlay={setShareOverlay}
+              />
+            </div>
             <div className="flex gap-1 py-4 sm:hidden">
               <img
                 src={gif?.user?.avatar_url}
@@ -143,7 +148,7 @@ const GifDetails = () => {
                 </div>
               </div>
               <button
-                // onClick={handleShareGif}
+                onClick={() => setShareOverlay(!shareOverlay)}
                 className="ml-auto"
               >
                 <IoPaperPlane size={25} className="text-gray-400" />
@@ -164,6 +169,7 @@ const GifDetails = () => {
             </button>
             <button
               // onClick={handleShareGif}
+              onClick={() => setShareOverlay(!shareOverlay)}
               className="flex items-center gap-4 text-lg font-medium"
             >
               <IoPaperPlane size={25} />
@@ -171,6 +177,7 @@ const GifDetails = () => {
             </button>
             <button
               // onClick={handleEmbedGif}
+
               className="flex items-center gap-4 text-lg font-medium"
             >
               <ImEmbed size={25} />
@@ -181,8 +188,8 @@ const GifDetails = () => {
         {/* Related Gifs */}
         {relatedGifs && (
           <div>
-            <span className="text-xl font-extrabold text-zinc-500">
-              Related GIFs
+            <span className="text-xl font-extrabold capitalize text-zinc-500">
+              Related {type}
             </span>
             <div className="columns-2 gap-2 md:columns-3">
               {relatedGifs.slice(1).map((gif) => (
