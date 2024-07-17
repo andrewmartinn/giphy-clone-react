@@ -12,6 +12,7 @@ import Socials from "../components/common/Socials";
 import { HiOutlineExternalLink } from "react-icons/hi";
 import { IoPaperPlane } from "react-icons/io5";
 import { ImEmbed } from "react-icons/im";
+import { IoIosShareAlt } from "react-icons/io";
 
 const contentType = ["gifs", "stickers", "texts"];
 
@@ -23,6 +24,7 @@ const GifDetails = () => {
   const [relatedGifs, setRelatedGifs] = useState([]);
   const [gifDesc, setGifDesc] = useState(false);
   const [shareOverlay, setShareOverlay] = useState(false);
+  const [embedOverlay, setEmbedOverlay] = useState(false);
 
   const gifSlug = slug.split("-");
   const gifId = gifSlug[gifSlug.length - 1];
@@ -54,7 +56,20 @@ const GifDetails = () => {
 
     fetchGifDetails();
     fetchRelatedGifs();
+
+    setShareOverlay(false);
+    setEmbedOverlay(false);
   }, [type, gifId]);
+
+  const handleShareOverlay = () => {
+    setShareOverlay(true);
+    setEmbedOverlay(false);
+  };
+
+  const handleEmbedOverlay = () => {
+    setShareOverlay(false);
+    setEmbedOverlay(true);
+  };
 
   return (
     <section className="my-10 grid grid-cols-4 gap-4">
@@ -130,30 +145,42 @@ const GifDetails = () => {
                 hover={true}
                 share={shareOverlay}
                 setShareOverlay={setShareOverlay}
+                embed={embedOverlay}
+                setEmbedOverlay={setEmbedOverlay}
               />
             </div>
-            <div className="flex gap-1 py-4 sm:hidden">
-              <img
-                src={gif?.user?.avatar_url}
-                alt={gif?.user?.display_name}
-                className="h-14"
-              />
-              <div className="px-2">
-                <div className="font-bold">{gif?.user?.display_name}</div>
-                <div className="flex items-center gap-1 text-[12px] font-bold text-gray-400">
-                  @{gif?.user?.username}
-                  {gif?.user?.is_verified && (
-                    <LuBadgeCheck size={18} fill="skyblue" color="#444" />
-                  )}
+            {gif?.user ? (
+              <div className="flex gap-1 py-4 sm:hidden">
+                <img
+                  src={gif?.user?.avatar_url}
+                  alt={gif?.user?.display_name}
+                  className="h-14"
+                />
+                <div className="px-2">
+                  <div className="font-bold">{gif?.user?.display_name}</div>
+                  <div className="flex items-center gap-1 text-[12px] font-bold text-gray-400">
+                    @{gif?.user?.username}
+                    {gif?.user?.is_verified && (
+                      <LuBadgeCheck size={18} fill="skyblue" color="#444" />
+                    )}
+                  </div>
                 </div>
+                <button
+                  onClick={() => setShareOverlay(!shareOverlay)}
+                  className="ml-auto"
+                >
+                  <IoIosShareAlt size={25} />
+                </button>
               </div>
-              <button
+            ) : (
+              <div
                 onClick={() => setShareOverlay(!shareOverlay)}
-                className="ml-auto"
+                className="flex w-full cursor-pointer items-center justify-end gap-2 font-medium sm:hidden"
               >
-                <IoPaperPlane size={25} className="text-gray-400" />
-              </button>
-            </div>
+                Share GIF
+                <IoIosShareAlt size={25} />
+              </div>
+            )}
           </div>
           {/* Favourites/Share/Embed */}
           <div className="mt-6 hidden flex-col gap-5 sm:flex">
@@ -168,16 +195,14 @@ const GifDetails = () => {
               Favourite
             </button>
             <button
-              // onClick={handleShareGif}
-              onClick={() => setShareOverlay(!shareOverlay)}
+              onClick={handleShareOverlay}
               className="flex items-center gap-4 text-lg font-medium"
             >
               <IoPaperPlane size={25} />
               Share
             </button>
             <button
-              // onClick={handleEmbedGif}
-
+              onClick={handleEmbedOverlay}
               className="flex items-center gap-4 text-lg font-medium"
             >
               <ImEmbed size={25} />
