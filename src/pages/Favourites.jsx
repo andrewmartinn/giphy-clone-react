@@ -37,25 +37,32 @@ const Favourites = () => {
   };
 
   return (
-    <section className="my-6">
+    <motion.section
+      className="my-6"
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
+    >
       <span className="faded-text">My Favourites</span>
       <motion.div
         className="mt-2 columns-2 gap-2 md:columns-3 lg:columns-4 xl:columns-5"
         initial="hidden"
         animate="visible"
         variants={containerVariants}
+        transition={{ duration: 1 }}
       >
         {favouriteGIFs.map((gif) => (
           <motion.div
             initial="hidden"
             animate="visible"
             variants={itemVariants}
+            key={gif.id}
           >
-            <Gif key={gif.id} gif={gif} hover={true} />
+            <Gif gif={gif} hover={true} />
           </motion.div>
         ))}
       </motion.div>
-    </section>
+    </motion.section>
   );
 };
 export default Favourites;
