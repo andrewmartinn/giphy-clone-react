@@ -27,7 +27,7 @@ const Search = () => {
 
   useEffect(() => {
     fetchSearchResults();
-  }, [filter]);
+  }, [query, filter]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
