@@ -14,6 +14,9 @@ Gif Details page
 
 React app inspired by GIPHY, allowing users to explore trending GIFs, search for GIFs, stickers, or text, favorite their preferred GIFs, view detailed GIF pages, and browse through various categories. The app uses the official GIPHY API for fetching and displaying GIF data.
 
+[View Live Demo](https://giphy-clone-react-app.netlify.app/)
+
+
 ## Technologies Used
 
 - [Vite](https://vitejs.dev/): Fast, opinionated web dev build tool
@@ -68,7 +71,7 @@ yarn install
 VITE_APP_GIPHY_API_KEY=your-api-key-here
 ```
 
-### Run React dev server (http://localhost:3000)
+### Run React dev server
 
 ```
 yarn dev
