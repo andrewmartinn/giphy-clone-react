@@ -13,6 +13,7 @@ import { HiOutlineExternalLink } from "react-icons/hi";
 import { IoPaperPlane } from "react-icons/io5";
 import { ImEmbed } from "react-icons/im";
 import { IoIosShareAlt } from "react-icons/io";
+import { motion } from "framer-motion";
 
 const contentType = ["gifs", "stickers", "texts"];
 
@@ -69,6 +70,16 @@ const GifDetails = () => {
   const handleEmbedOverlay = () => {
     setShareOverlay(false);
     setEmbedOverlay(true);
+  };
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
   };
 
   return (
@@ -134,7 +145,12 @@ const GifDetails = () => {
       </div>
 
       {/* Main Gif Content */}
-      <div className="col-span-4 sm:col-span-3">
+      <motion.div
+        className="col-span-4 sm:col-span-3"
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
         <div className="flex gap-6">
           {/* GIF */}
           <div className="w-full sm:w-3/4">
@@ -216,14 +232,20 @@ const GifDetails = () => {
             <span className="text-xl font-extrabold capitalize text-zinc-500">
               Related {type}
             </span>
-            <div className="columns-2 gap-2 md:columns-3">
+            <motion.div
+              className="columns-2 gap-2 md:columns-3"
+              initial="hidden"
+              animate="visible"
+              transition={{ duration: 1 }}
+              variants={containerVariants}
+            >
               {relatedGifs.slice(1).map((gif) => (
                 <Gif key={gif.id} gif={gif} hover={true} />
               ))}
-            </div>
+            </motion.div>
           </div>
         )}
-      </div>
+      </motion.div>
     </section>
   );
 };

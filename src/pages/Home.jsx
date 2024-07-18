@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useGif } from "../hooks/useGif";
 import Gif from "../components/home/Gif";
 import GifFilter from "../components/home/GifFilter";
+import { motion } from "framer-motion";
 
 const Home = () => {
   const { gf, gifs, setGifs, filter } = useGif();
@@ -24,17 +25,45 @@ const Home = () => {
     fetchTrendingGifs();
   }, [filter]);
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0 },
+  };
+
   return (
-    <section className="min-h-screen overflow-hidden">
+    <motion.section
+      className="min-h-screen overflow-hidden"
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
+    >
       <GifFilter showTrending={true} />
       {gifs && (
-        <div className="columns-2 gap-2 md:columns-3 lg:columns-4 xl:columns-5">
+        <motion.div
+          className="columns-2 gap-2 md:columns-3 lg:columns-4 xl:columns-5"
+          initial="hidden"
+          animate="visible"
+          transition={{ duration: 1 }}
+          variants={containerVariants}
+        >
           {gifs.map((gif) => (
-            <Gif key={gif.id} gif={gif} hover={true} />
+            <motion.div key={gif.id} variants={itemVariants}>
+              <Gif key={gif.id} gif={gif} hover={true} />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       )}
-    </section>
+    </motion.section>
   );
 };
 export default Home;

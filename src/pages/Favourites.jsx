@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useGif } from "../hooks/useGif";
 import Gif from "../components/home/Gif";
+import { motion } from "framer-motion";
 
 const Favourites = () => {
   const { gf, favourites } = useGif();
@@ -20,14 +21,40 @@ const Favourites = () => {
     fetchFavoriteGIFs();
   }, []);
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0 },
+  };
+
   return (
     <section className="my-6">
       <span className="faded-text">My Favourites</span>
-      <div className="mt-2 columns-2 gap-2 md:columns-3 lg:columns-4 xl:columns-5">
+      <motion.div
+        className="mt-2 columns-2 gap-2 md:columns-3 lg:columns-4 xl:columns-5"
+        initial="hidden"
+        animate="visible"
+        variants={containerVariants}
+      >
         {favouriteGIFs.map((gif) => (
-          <Gif key={gif.id} gif={gif} hover={true} />
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={itemVariants}
+          >
+            <Gif key={gif.id} gif={gif} hover={true} />
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 };

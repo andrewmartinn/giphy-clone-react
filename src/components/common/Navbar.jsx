@@ -11,19 +11,19 @@ const Navbar = () => {
   const [categories, setCategories] = useState([]);
   const [showCategoriesDropdown, setShowCategoriesDropdown] = useState(false);
 
-  const fetchGifCategories = async () => {
-    try {
-      const { data, favourites } = await gf.categories();
-      console.log("[categories_navbar]", data);
-      setCategories(data);
-    } catch (error) {
-      console.error("categories", error);
-    }
-  };
+  // const fetchGifCategories = async () => {
+  //   try {
+  //     const { data, favourites } = await gf.categories();
+  //     console.log("[categories_navbar]", data);
+  //     setCategories(data);
+  //   } catch (error) {
+  //     console.error("categories", error);
+  //   }
+  // };
 
-  useEffect(() => {
-    fetchGifCategories();
-  }, []);
+  // useEffect(() => {
+  //   fetchGifCategories();
+  // }, []);
 
   return (
     <nav>
