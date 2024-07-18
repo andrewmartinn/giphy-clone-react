@@ -7,19 +7,19 @@ const Favourites = () => {
   const { gf, favourites } = useGif();
   const [favouriteGIFs, setFavouriteGIFs] = useState([]);
 
-  const fetchFavoriteGIFs = async () => {
-    try {
-      const { data: gifs } = await gf.gifs(favourites);
-      console.log("favourites", gifs);
-      setFavouriteGIFs(gifs);
-    } catch (error) {
-      console.error("favourites", error);
-    }
-  };
-
   useEffect(() => {
+    const fetchFavoriteGIFs = async () => {
+      try {
+        const { data: gifs } = await gf.gifs(favourites);
+        console.log("favourites", gifs);
+        setFavouriteGIFs(gifs);
+      } catch (error) {
+        console.error("favourites", error);
+      }
+    };
+
     fetchFavoriteGIFs();
-  }, []);
+  }, [gf, favourites]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -27,6 +27,7 @@ const Favourites = () => {
       opacity: 1,
       transition: {
         staggerChildren: 0.1,
+        delayChildren: 0.2,
       },
     },
   };
@@ -46,18 +47,10 @@ const Favourites = () => {
       <span className="faded-text">My Favourites</span>
       <motion.div
         className="mt-2 columns-2 gap-2 md:columns-3 lg:columns-4 xl:columns-5"
-        initial="hidden"
-        animate="visible"
         variants={containerVariants}
-        transition={{ duration: 1 }}
       >
         {favouriteGIFs.map((gif) => (
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={itemVariants}
-            key={gif.id}
-          >
+          <motion.div key={gif.id} variants={itemVariants}>
             <Gif gif={gif} hover={true} />
           </motion.div>
         ))}
@@ -65,4 +58,5 @@ const Favourites = () => {
     </motion.section>
   );
 };
+
 export default Favourites;
