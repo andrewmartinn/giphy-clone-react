@@ -1,4 +1,16 @@
 # GIPHY React Clone
+![giphy-home](https://github.com/user-attachments/assets/aa44360b-38da-4e22-aef3-96fab0d316ad)
+Homepage
+
+![giphy-categories](https://github.com/user-attachments/assets/35e719f0-9972-46d9-b10a-199c6bcf17ba)
+Movies Category page
+
+![giphy-search](https://github.com/user-attachments/assets/159ba5c3-5b8b-4536-bfbd-8a35f7771f97)
+Search page
+
+![gif](https://github.com/user-attachments/assets/43e038bf-e969-4cbb-8a04-d1c174a32c30)
+Gif Details page
+
 
 React app inspired by GIPHY, allowing users to explore trending GIFs, search for GIFs, stickers, or text, favorite their preferred GIFs, view detailed GIF pages, and browse through various categories. The app uses the official GIPHY API for fetching and displaying GIF data.
 
