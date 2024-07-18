@@ -1,35 +1,61 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootLayout from "./layout/RootLayout";
-import Home from "./pages/Home";
-import Category from "./pages/Category";
-import Search from "./pages/Search";
-import Favourites from "./pages/Favourites";
+
 import GifProvider from "./context/gifContext";
-import GifDetails from "./pages/GifDetails";
+import { Suspense, lazy } from "react";
+import LoadingSpinner from "./components/common/LoadingSpinner";
+import NotFound from "./components/common/NotFound";
+
+const Home = lazy(() => import("./pages/Home"));
+const Category = lazy(() => import("./pages/Category"));
+const Search = lazy(() => import("./pages/Search"));
+const Favourites = lazy(() => import("./pages/Favourites"));
+const GifDetails = lazy(() => import("./pages/GifDetails"));
 
 const router = createBrowserRouter([
   {
     element: <RootLayout />,
+    errorElement: <NotFound />,
     children: [
       {
         path: "/",
-        element: <Home />,
+        element: (
+          <Suspense fallback={<LoadingSpinner />}>
+            <Home />
+          </Suspense>
+        ),
       },
       {
         path: "/:category",
-        element: <Category />,
+        element: (
+          <Suspense fallback={<LoadingSpinner />}>
+            <Category />
+          </Suspense>
+        ),
       },
       {
         path: "/search/:query",
-        element: <Search />,
+        element: (
+          <Suspense fallback={<LoadingSpinner />}>
+            <Search />
+          </Suspense>
+        ),
       },
       {
         path: "/:type/:slug",
-        element: <GifDetails />,
+        element: (
+          <Suspense fallback={<LoadingSpinner />}>
+            <GifDetails />
+          </Suspense>
+        ),
       },
       {
         path: "/favourites",
-        element: <Favourites />,
+        element: (
+          <Suspense fallback={<LoadingSpinner />}>
+            <Favourites />
+          </Suspense>
+        ),
       },
     ],
   },

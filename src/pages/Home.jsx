@@ -4,7 +4,7 @@ import Gif from "../components/home/Gif";
 import GifFilter from "../components/home/GifFilter";
 
 const Home = () => {
-  const { gf, gifs, setGifs, filter, setFilter, favourites } = useGif();
+  const { gf, gifs, setGifs, filter } = useGif();
 
   const fetchTrendingGifs = async () => {
     try {
